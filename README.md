@@ -10,7 +10,7 @@ It keeps only:
 - Task 2 collision-free path generation from the Task 1 sequence
 - the upstream interface note that defines what Task 3 should consume from Task 2
 
-Task 3 and Task 4 implementation are intentionally excluded from this branch.
+Task 4 implementation are intentionally excluded from this branch.
 
 ## Quick start
 
@@ -74,6 +74,25 @@ Task 2 outputs:
 The committed `artifacts/task2_cartesian_paths.json` is the authoritative frozen Task 2 artifact for this branch. If a fresh full Task 2 rebuild is slow in your environment, collaborators can still inspect, validate, and continue downstream work from that committed artifact.
 
 See `docs/TASK2.md` for the active Task 2 method, kept scripts, artifacts, and the exact payload exported to Task 3.
+
+## Task 3
+
+Task 3 generates time-parameterized trajectories from the frozen Task 2 path artifact. It uses piecewise cubic polynomials in both joint space and Cartesian space.
+
+```bash
+python scripts/build_task3_trajectories.py
+python scripts/plot_task3_trajectories.py
+python scripts/report_task3_trajectories.py
+```
+
+Task 3 outputs:
+
+- `artifacts/task3_trajectories.json`
+- `artifacts/figures/task3_cartesian_xy_trajectory.png`
+- `artifacts/figures/task3_joint_trajectory_segment0.png`
+- `artifacts/figures/task3_cartesian_trajectory_segment0.png`
+
+See `docs/TASK3.md` for the Task 3 interpolation method, scripts, artifacts, and output schema.
 
 ## Validation
 
