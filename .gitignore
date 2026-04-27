@@ -4,3 +4,5 @@ __pycache__/
 .venv/
 .venv*/
 .codex
+scripts/task4_workspace/build
+scripts/task4_workspace/log
