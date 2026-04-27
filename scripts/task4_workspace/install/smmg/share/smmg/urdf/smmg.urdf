@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="smmg">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.161579482014634 0.10046496179503 0.0199868632169396"
+        rpy="0 0 0" />
+      <mass
+        value="1.19744095453115" />
+      <inertia
+        ixx="0.00388413731323567"
+        ixy="0.000129091883404609"
+        ixz="-0.000234198751601833"
+        iyy="0.00791467765674646"
+        iyz="-2.63038287894478E-05"
+        izz="0.0110014173676073" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="l1">
+    <inertial>
+      <origin
+        xyz="0.090269177291178 -1.73472347597681E-18 0.0026549758026817"
+        rpy="0 0 0" />
+      <mass
+        value="0.0126696902001295" />
+      <inertia
+        ixx="2.39703742300665E-07"
+        ixy="-4.65141434172701E-24"
+        ixz="-1.56551104304191E-07"
+        iyy="3.43024845873656E-05"
+        iyz="-6.49858072135899E-24"
+        izz="3.44703715883014E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l1"
+    type="revolute">
+    <origin
+      xyz="0.015 0.015 0.1"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="l1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l2">
+    <inertial>
+      <origin
+        xyz="0.085 1.73472347597681E-18 -0.00249999999999997"
+        rpy="0 0 0" />
+      <mass
+        value="0.0118842920367321" />
+      <inertia
+        ixx="2.23645574840211E-07"
+        ixy="-1.57683096241192E-39"
+        ixz="4.42403764280444E-23"
+        iyy="2.89636888735626E-05"
+        iyz="-9.29446100116021E-24"
+        izz="2.91378165649165E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l2"
+    type="continuous">
+    <origin
+      xyz="0.17 0 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="l1" />
+    <child
+      link="l2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="l3">
+    <inertial>
+      <origin
+        xyz="0.00253369460812275 -2.60208521396521E-17 -0.0490700987771658"
+        rpy="0 0 0" />
+      <mass
+        value="0.00796128255227576" />
+      <inertia
+        ixx="5.95622136742788E-06"
+        ixy="-3.62047881425816E-22"
+        ixz="6.68964825158897E-07"
+        iyy="6.10266097143917E-06"
+        iyz="3.17261975949009E-21"
+        izz="2.48038969248068E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l3"
+    type="continuous">
+    <origin
+      xyz="0.17 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l2" />
+    <child
+      link="l3" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="l4">
+    <inertial>
+      <origin
+        xyz="-0.2016845912891 -0.0832056001858059 -0.0069490226065791"
+        rpy="0 0 0" />
+      <mass
+        value="1.22995621932029" />
+      <inertia
+        ixx="0.00443441587627585"
+        ixy="-0.000121076289217031"
+        ixz="0.000271087920991851"
+        iyy="0.00898873026327204"
+        iyz="0.000218852456764692"
+        izz="0.0122050542928664" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://smmg/meshes/l4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l4_joint"
+    type="fixed">
+    <origin
+      xyz="0.0100000000000001 0 -0.095"
+      rpy="-3.14159265358979 0 0" />
+    <parent
+      link="l3" />
+    <child
+      link="l4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

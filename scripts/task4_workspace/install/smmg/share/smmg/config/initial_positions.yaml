@@ -1,0 +1,6 @@
+# Default initial positions for smmg's ros2_control fake system
+
+initial_positions:
+  l1: 0.0
+  l2: 0.0
+  l3: 0.0
