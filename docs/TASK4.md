@@ -25,6 +25,12 @@ The provided CAD files on Canvas contained some undefined part sketches, which l
 
 We defined joint coordinate frames and rotation axes for each joint in the assembly. Using the SW2URDF plugin, we configured joint motion limits, link connections, and collision geometries, then exported the URDF file. We validated the exported URDF file using an online visualization tool (https://viewer.robotsfan.com/) to ensure it was configured correctly.
 
+<div align="center">
+<img src="../artifacts/figures/task4_solidworks.png" width=60%>
+<center>Coordinate Configuration</center>
+<br><br>
+</div>
+
 ### Step 3. Moveit2 Setup Assistant
 
 Install ROS2 and Moveit2:
@@ -73,15 +79,29 @@ source install/setup.bash
 ros2 launch smmg demo.launch.py
 ```
 
+<div align="center">
+<img src="../artifacts/figures/task4_rviz.png" width=60%>
+<center>RViz</center>
+<br><br>
+</div>
+
 ### Step 5. Trajectory Publish and Simulation
 
-Refer to the official wiki documentation, write trajectory setting release code, control the robotic arm to execute instructions, and view the effect in rviz.
+Following the official documentation (https://moveit.picknik.ai/main/doc/examples/motion_planning_api/motion_planning_api_tutorial.html), the trajectory publishing code was implemented.
+The robotic arm was controlled to execute the trajectory commands, and the resulting
+motion was visualized and verified in RViz.
 
 ```bash
 colcon build
 
 ros2 launch hello_moveit demo.launch.py
 ```
+
+<div align="center">
+<img src="../artifacts/figures/task4_rqt_graph.png" width=80%>
+<center>ROS Node and Topic</center>
+<br><br>
+</div>
 
 ### Step 6. Recording and Analysis
 
@@ -102,9 +122,23 @@ ros2 run plotjuggler plotjuggler
 
 Use Mathematica or Matlab to calculate the trajectory of the end position and analysis result.
 
+<div align="center">
+<img src="../artifacts/figures/task4_joint_angle.png" width=80%>
+<center>Joint Angle</center>
+<br><br>
+</div>
+
+<div align="center">
+<img src="../artifacts/figures/task4_real_trajectory.png" width=80%>
+<center>Joint Angle</center>
+<br><br>
+</div>
+
 ## Simulation Configuration
 
 Joint configuration:
+
+    default_robot_padding: 0.001
 
     Joint1:
         type: revolute
@@ -129,7 +163,7 @@ Joint configuration:
         has_acceleration_limits: true
         max_acceleration: 5.0
 
-Set the lower angle of joint1 to 0.0,which can limit the workspace of the robotic arm to the set scene to avoid multiple solutions. Joint3 have higher velocity and acceleration, which is beneficial for achieving better simulation performance.
+The lower joint limit of joint1 was set to 0.0 rad to restrict the workspace to the target scene and avoid redundant inverse kinematic solutions. Joint3 was assigned higher velocity and acceleration limits to improve simulation performance. A collision padding radius of 1 mm was applied to all links.
 
 Pilz planner configuration:
 
@@ -141,7 +175,32 @@ Pilz planner configuration:
 
 Limit the move velocity and acceleration in cartesian space.
 
-Kinematics configuration
+Kinematics configuration:
 
+    arm:
+        kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+        kinematics_solver_search_resolution: 0.0020000000000000001
+        kinematics_solver_timeout: 0.0050000000000000001
+
+The arm group uses the KDL kinematics plugin with a search resolution of 0.002 (rad/m) and a timeout of 0.005 s. This provides sufficient IK accuracy for the task while keeping solve times low.
 
 ## Simulation Result
+
+The simulation result is presented in Step 6 of the work flow. Overall, the requirements of Task 4 have been met: the robotic arm traversed all target points specified by the Task 1 weld order without any collision. However, certain details still offer room for further optimization.
+
+In certain scenarios, omitting an adjunct point can cause collisions and motion planning failures, which may result in the target point being missed:
+
+<div align="center">
+<img src="../artifacts/figures/task4_move_fail.png" width=60%>
+<center>Target Point Loss</center>
+<br><br>
+</div>
+
+In some scenarios, the robotic arm may suddenly move away from obstacles and then return to the next point. Adding an adjunct point can improve this situation.
+
+<div align="center">
+<img src="../artifacts/figures/task4_divergent_result.png" width=60%>
+<center>Divergent planning results</center>
+<br><br>
+</div>
+
